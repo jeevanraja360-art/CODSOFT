@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <h2 class="logo">Online Portfolio</h2>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Skills</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <section class="input-section">
+    <h2>Create Your Profile</h2>
+
+    <input type="text" id="nameInput" placeholder="Enter your name">
+
+    <input type="text" id="roleInput" placeholder="Enter your role / short intro">
+
+    <textarea id="aboutInput" placeholder="Enter About Me"></textarea>
+
+    <input type="file" id="imgInput" accept="image/*">
+
+    <button onclick="createProfile()">Create Profile</button>
+</section>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="heroSection">
+    <div class="hero-text">
+        <h1 id="profileName">ALEXANDER SCOTTISH</h1>
+
+        <p id="profileDesc">
+            Hi, I am a Professional Developer and ICT Degree holder.
+        </p>
+
+        <button>Hire Me</button>
+    </div>
+</section>
+
+
+    <!-- ABOUT SECTION -->
+    <section class="about">
+    <div class="about-image">
+        <img id="aboutImg" src="images/profile.jpg" alt="profile">
+    </div>
+
+    <div class="about-text">
+        <h2>ABOUT ME</h2>
+
+        <p id="aboutDesc">
+            I am a developer blending expertise with industry know-how
+            to guide your next software development project.
+        </p>
+
+        <button>Download Resume</button>
+    </div>
+</section>
+
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Online Portfolio. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+<script>
+function createProfile() {
+
+    let name = document.getElementById("nameInput").value;
+    let role = document.getElementById("roleInput").value;
+    let about = document.getElementById("aboutInput").value;
+    let imgFile = document.getElementById("imgInput").files[0];
+
+    if (name !== "") {
+        document.getElementById("profileName").innerText = name;
+    }
+
+    if (role !== "") {
+        document.getElementById("profileDesc").innerText = role;
+    }
+
+    if (about !== "") {
+        document.getElementById("aboutDesc").innerText = about;
+    }
+
+    if (imgFile) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+
+            // 🔥 HERO BACKGROUND IMAGE
+            document.getElementById("heroSection").style.backgroundImage =
+                `url(${e.target.result})`;
+
+            // ABOUT SECTION IMAGE
+            document.getElementById("aboutImg").src = e.target.result;
+        };
+        reader.readAsDataURL(imgFile);
+    }
+}
+</script>
