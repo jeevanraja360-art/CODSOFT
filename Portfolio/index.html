@@ -1,0 +1,64 @@
+<h1 style="color:red;">HELLO KEERTHIKA – GITHUB PAGES TEST</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- FORM -->
+<div id="formSection">
+    <div class="form-card">
+        <h2>Create Your Portfolio</h2>
+
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label>Role</label>
+        <input type="text" id="role" placeholder="Your role or domain">
+
+        <label>About You</label>
+        <textarea id="about" placeholder="Write something about yourself"></textarea>
+
+        <label>Profile Photo</label>
+        <input type="file" id="photo" accept="image/*">
+
+        <label>Resume (PDF)</label>
+        <input type="file" id="resume" accept=".pdf">
+
+        <button type="button" onclick="createPortfolio()">Create Portfolio</button>
+    </div>
+</div>
+
+
+<!-- PORTFOLIO -->
+<div id="portfolioSection" style="display:none;">
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1 id="pName"></h1>
+            <p id="pRole"></p>
+            <button class="btn">Hire Me</button>
+        </div>
+
+        <div class="hero-photo">
+            <img id="pPhoto">
+        </div>
+    </div>
+
+    <div class="about">
+        <h2>ABOUT ME</h2>
+        <p id="pAbout"></p>
+        <a id="resumeLink" download>
+            <button class="btn">Download Resume</button>
+        </a>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
