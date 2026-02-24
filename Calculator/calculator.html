@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated Calculator</title>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(270deg, #00c6ff, #0072ff, #6a11cb);
+        background-size: 600% 600%;
+        animation: bgMove 10s ease infinite;
+        font-family: Arial;
+    }
+
+    @keyframes bgMove {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    .calculator {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 15px;
+        width: 260px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+        from {transform: scale(0.8); opacity: 0;}
+        to {transform: scale(1); opacity: 1;}
+    }
+
+    #display {
+        width: 100%;
+        height: 50px;
+        font-size: 24px;
+        text-align: right;
+        margin-bottom: 15px;
+        padding: 8px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.8);
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    .operator {
+        background: #0d47a1;
+        color: white;
+    }
+
+    .equals {
+        background: #4caf50;
+        color: white;
+        grid-column: span 2;
+    }
+
+    .clear {
+        background: #f44336;
+        color: white;
+    }
+
+    .number {
+        background: white;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" disabled>
+
+    <div class="buttons">
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">+</button>
+
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">-</button>
+
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">*</button>
+
+        <button class="number">0</button>
+        <button class="clear">C</button>
+        <button class="equals">=</button>
+        <button class="operator">/</button>
+    </div>
+</div>
+
+<script>
+    let display = document.getElementById("display");
+    display.value = "Welcome 🙂";
+
+    let buttons = document.querySelectorAll("button");
+    let currentInput = "";
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            let value = button.textContent;
+
+            display.classList.add("flash");
+            setTimeout(() => display.classList.remove("flash"), 150);
+
+            if (value === "C") {
+                currentInput = "";
+                display.value = "";
+            }
+            else if (value === "=") {
+                try {
+                    currentInput = eval(currentInput);
+                    display.value = currentInput;
+                } catch {
+                    display.value = "Error";
+                    currentInput = "";
+                }
+            }
+            else {
+                currentInput += value;
+                display.value = currentInput;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
